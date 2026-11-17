@@ -14,6 +14,7 @@ const COLORS = [
   '#7986cb', // J - indigo
   '#ffb74d', // L - orange
   '#90a4ae', // N - tuerca (gris acero)
+  '#f06292', // P - cruz (rosa)
 ];
 
 const PIECES = [
@@ -26,6 +27,7 @@ const PIECES = [
   [[6,0,0],[6,6,6],[0,0,0]],                  // J
   [[0,0,7],[7,7,7],[0,0,0]],                  // L
   [[8,8,8],[8,0,8],[8,8,8]],                  // N (tuerca: anillo 3x3 con hueco)
+  [[0,9,0],[9,9,9],[0,9,0]],                  // P (cruz "+")
 ];
 
 const LINE_SCORES = [0, 100, 300, 500, 800];
