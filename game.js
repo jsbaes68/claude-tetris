@@ -250,6 +250,7 @@ function loop(ts) {
       current.y++;
     } else {
       lockPiece();
+      if (gameOver) { draw(); return; } // endGame ya mostró el overlay; dibujar último frame y no reprogramar el bucle
     }
   }
   draw();
