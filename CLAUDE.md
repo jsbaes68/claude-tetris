@@ -16,7 +16,7 @@ Three files: `index.html` (DOM + two canvases), `style.css`, and `game.js` (all 
 
 Things that span the code and are easy to miss:
 
-- **Board/piece encoding**: the board is a `ROWS × COLS` matrix of `0` or a color index 1–7. The same index is used in `PIECES` (shape matrices), `COLORS` (palette), and the board cells, so adding or reordering a piece means updating all of them in lockstep. `randomPiece` hard-codes `7` piece types.
+- **Board/piece encoding**: the board is a `ROWS × COLS` matrix of `0` or a color index 1–8. The same index is used in `PIECES` (shape matrices), `COLORS` (palette), and the board cells, so adding or reordering a piece means updating all of them in lockstep. `randomPiece` derives the piece count from `PIECES.length - 1`. Piece 8 is the "tuerca" (3×3 ring with an empty center).
 - **Control flow is mutually recursive**: `lockPiece` → `merge` → `clearLines` → `spawn`, and `spawn` calls `endGame()` if the new piece collides immediately. `hardDrop`, `softDrop` and the `loop` gravity tick all funnel through `lockPiece`.
 - **Game loop**: `requestAnimationFrame` handle is in `animId`; `loop` accumulates `dropAccum` against `dropInterval`. Pause/game-over cancel the frame, and resuming re-seeds `lastTime` and calls `loop` directly. `init()` doubles as restart (bound to the restart button).
 - **Scoring/speed** live in `clearLines` (`LINE_SCORES[cleared] * level`; level = `floor(lines/10)+1`; `dropInterval = max(100, 1000 - (level-1)*90)`). Soft drop awards 1 point per row, hard drop 2 per row.
